@@ -3,14 +3,14 @@ version: '>= 0.14.0'
 formatter: markdown table
 
 content: |-
-  [![Tests](https://github.com/netascode/terraform-aci-scaffolding/actions/workflows/test.yml/badge.svg)](https://github.com/netascode/terraform-aci-scaffolding/actions/workflows/test.yml)
+  [![Tests](https://github.com/netascode/terraform-aci-pod-setup/actions/workflows/test.yml/badge.svg)](https://github.com/netascode/terraform-aci-pod-setup/actions/workflows/test.yml)
 
-  # Terraform ACI Scaffolding Module
+  # Terraform ACI Pod Setup Module
 
-  Description
+  Manages ACI Pod Setup
 
   Location in GUI:
-  `Tenants` » `XXX`
+  `Fabric` » `Inventory` » `Pod Fabric Setup Policy`
 
   ## Examples
 

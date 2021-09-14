@@ -14,35 +14,34 @@ terraform {
 module "main" {
   source = "../.."
 
-  name        = "ABC"
-  alias       = "ALIAS"
-  description = "DESCR"
+  id       = 2
+  tep_pool = "10.2.0.0/16"
 }
 
-data "aci_rest" "fvTenant" {
-  dn = "uni/tn-ABC"
+data "aci_rest" "fabricSetupP" {
+  dn = "uni/controller/setuppol/setupp-${module.main.id}"
 
   depends_on = [module.main]
 }
 
-resource "test_assertions" "fvTenant" {
-  component = "fvTenant"
+resource "test_assertions" "fabricSetupP" {
+  component = "fabricSetupP"
 
-  equal "name" {
-    description = "name"
-    got         = data.aci_rest.fvTenant.content.name
-    want        = "ABC"
+  equal "podId" {
+    description = "podId"
+    got         = data.aci_rest.fabricSetupP.content.podId
+    want        = "2"
   }
 
-  equal "nameAlias" {
-    description = "nameAlias"
-    got         = data.aci_rest.fvTenant.content.nameAlias
-    want        = "ALIAS"
+  equal "podType" {
+    description = "podType"
+    got         = data.aci_rest.fabricSetupP.content.podType
+    want        = "physical"
   }
 
-  equal "descr" {
-    description = "descr"
-    got         = data.aci_rest.fvTenant.content.descr
-    want        = "DESCR"
+  equal "tepPool" {
+    description = "tepPool"
+    got         = data.aci_rest.fabricSetupP.content.tepPool
+    want        = "10.2.0.0/16"
   }
 }

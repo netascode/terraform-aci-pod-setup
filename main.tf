@@ -1,9 +1,9 @@
-resource "aci_rest" "fvTenant" {
-  dn         = "uni/tn-${var.name}"
-  class_name = "fvTenant"
+resource "aci_rest" "fabricSetupP" {
+  dn         = "uni/controller/setuppol/setupp-${var.id}"
+  class_name = "fabricSetupP"
   content = {
-    name      = var.name
-    nameAlias = var.alias
-    descr     = var.description
+    podId   = var.id
+    podType = "physical"
+    tepPool = var.tep_pool
   }
 }

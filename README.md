@@ -1,23 +1,22 @@
 <!-- BEGIN_TF_DOCS -->
-[![Tests](https://github.com/netascode/terraform-aci-scaffolding/actions/workflows/test.yml/badge.svg)](https://github.com/netascode/terraform-aci-scaffolding/actions/workflows/test.yml)
+[![Tests](https://github.com/netascode/terraform-aci-pod-setup/actions/workflows/test.yml/badge.svg)](https://github.com/netascode/terraform-aci-pod-setup/actions/workflows/test.yml)
 
-# Terraform ACI Scaffolding Module
+# Terraform ACI Pod Setup Module
 
-Description
+Manages ACI Pod Setup
 
 Location in GUI:
-`Tenants` » `XXX`
+`Fabric` » `Inventory` » `Pod Fabric Setup Policy`
 
 ## Examples
 
 ```hcl
-module "aci_scaffolding" {
-  source  = "netascode/scaffolding/aci"
+module "aci_pod_setup" {
+  source  = "netascode/pod-setup/aci"
   version = ">= 0.0.1"
 
-  name        = "ABC"
-  alias       = "ABC-ALIAS"
-  description = "My Description"
+  id       = 2
+  tep_pool = "10.2.0.0/16"
 }
 
 ```
@@ -39,20 +38,19 @@ module "aci_scaffolding" {
 
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
-| <a name="input_name"></a> [name](#input\_name) | Tenant name. | `string` | n/a | yes |
-| <a name="input_alias"></a> [alias](#input\_alias) | Tenant alias. | `string` | `""` | no |
-| <a name="input_description"></a> [description](#input\_description) | Tenant description. | `string` | `""` | no |
+| <a name="input_id"></a> [id](#input\_id) | Pod ID. Minimum value: 1. Maximum value: 255. | `number` | n/a | yes |
+| <a name="input_tep_pool"></a> [tep\_pool](#input\_tep\_pool) | TEP pool. | `string` | n/a | yes |
 
 ## Outputs
 
 | Name | Description |
 |------|-------------|
-| <a name="output_dn"></a> [dn](#output\_dn) | Distinguished name of `fvTenant` object. |
-| <a name="output_name"></a> [name](#output\_name) | Tenant name. |
+| <a name="output_dn"></a> [dn](#output\_dn) | Distinguished name of `fabricSetupP` object. |
+| <a name="output_id"></a> [id](#output\_id) | Pod ID. |
 
 ## Resources
 
 | Name | Type |
 |------|------|
-| [aci_rest.fvTenant](https://registry.terraform.io/providers/netascode/aci/latest/docs/resources/rest) | resource |
+| [aci_rest.fabricSetupP](https://registry.terraform.io/providers/netascode/aci/latest/docs/resources/rest) | resource |
 <!-- END_TF_DOCS -->
