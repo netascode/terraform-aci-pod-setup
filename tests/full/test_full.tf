@@ -14,7 +14,7 @@ terraform {
 module "main" {
   source = "../.."
 
-  id       = 2
+  pod_id   = 2
   tep_pool = "10.2.0.0/16"
 }
 

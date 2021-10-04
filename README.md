@@ -15,7 +15,7 @@ module "aci_pod_setup" {
   source  = "netascode/pod-setup/aci"
   version = ">= 0.0.1"
 
-  id       = 2
+  pod_id   = 2
   tep_pool = "10.2.0.0/16"
 }
 
@@ -38,7 +38,7 @@ module "aci_pod_setup" {
 
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
-| <a name="input_id"></a> [id](#input\_id) | Pod ID. Minimum value: 1. Maximum value: 255. | `number` | n/a | yes |
+| <a name="input_pod_id"></a> [pod\_id](#input\_pod\_id) | Pod ID. Minimum value: 1. Maximum value: 255. | `number` | n/a | yes |
 | <a name="input_tep_pool"></a> [tep\_pool](#input\_tep\_pool) | TEP pool. | `string` | n/a | yes |
 
 ## Outputs
