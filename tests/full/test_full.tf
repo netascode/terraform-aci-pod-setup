@@ -5,8 +5,8 @@ terraform {
     }
 
     aci = {
-      source  = "netascode/aci"
-      version = ">=0.2.0"
+      source  = "CiscoDevNet/aci"
+      version = ">=2.0.0"
     }
   }
 }
@@ -18,7 +18,7 @@ module "main" {
   tep_pool = "10.2.0.0/16"
 }
 
-data "aci_rest" "fabricSetupP" {
+data "aci_rest_managed" "fabricSetupP" {
   dn = "uni/controller/setuppol/setupp-${module.main.id}"
 
   depends_on = [module.main]
@@ -29,19 +29,19 @@ resource "test_assertions" "fabricSetupP" {
 
   equal "podId" {
     description = "podId"
-    got         = data.aci_rest.fabricSetupP.content.podId
+    got         = data.aci_rest_managed.fabricSetupP.content.podId
     want        = "2"
   }
 
   equal "podType" {
     description = "podType"
-    got         = data.aci_rest.fabricSetupP.content.podType
+    got         = data.aci_rest_managed.fabricSetupP.content.podType
     want        = "physical"
   }
 
   equal "tepPool" {
     description = "tepPool"
-    got         = data.aci_rest.fabricSetupP.content.tepPool
+    got         = data.aci_rest_managed.fabricSetupP.content.tepPool
     want        = "10.2.0.0/16"
   }
 }
