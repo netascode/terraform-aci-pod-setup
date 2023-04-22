@@ -17,8 +17,9 @@ variable "external_tep_pools" {
   description = "List of external TEP Pools"
   type = list(object({
     prefix                 = string
-    reserved_address_count = optional(number)
+    reserved_address_count = number
   }))
+  default = []
 }
 
 variable "remote_pools" {
@@ -27,6 +28,7 @@ variable "remote_pools" {
     id          = number
     remote_pool = string
   }))
+  default = []
 
   validation {
     condition = alltrue([

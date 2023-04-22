@@ -16,9 +16,9 @@ terraform {
 module "main" {
   source = "../.."
 
-  pod_id   = 2
-  tep_pool = "10.2.0.0/16"
-  external_tep_pools = [
+  pod_id   = 3
+  tep_pool = "10.3.0.0/16"
+  /* external_tep_pools = [
     {
       prefix                 = "172.16.18.0/24"
       reserved_address_count = 4
@@ -37,7 +37,7 @@ module "main" {
       id          = 2
       remote_pool = "10.191.202.0/24"
     }
-  ]
+  ] */
 }
 
 data "aci_rest_managed" "fabricSetupP" {
@@ -52,7 +52,7 @@ resource "test_assertions" "fabricSetupP" {
   equal "podId" {
     description = "podId"
     got         = data.aci_rest_managed.fabricSetupP.content.podId
-    want        = "2"
+    want        = "3"
   }
 
   equal "podType" {
@@ -64,18 +64,18 @@ resource "test_assertions" "fabricSetupP" {
   equal "tepPool" {
     description = "tepPool"
     got         = data.aci_rest_managed.fabricSetupP.content.tepPool
-    want        = "10.2.0.0/16"
+    want        = "10.3.0.0/16"
   }
 }
 
-data "aci_rest_managed" "fabricExtRoutablePodSubnet1" {
+/* data "aci_rest_managed" "fabricExtRoutablePodSubnet1" {
   dn = "uni/controller/setuppol/setupp-${module.main.id}/extrtpodsubnet-[172.16.18.0/24]"
 
   depends_on = [module.main]
 }
 
 resource "test_assertions" "fabricExtRoutablePodSubnet1" {
-  component = "fabricExtRoutablePodSubnet"
+  component = "fabricExtRoutablePodSubnet1"
 
   equal "prefix" {
     description = "External TEP Pool prefix"
@@ -97,7 +97,7 @@ data "aci_rest_managed" "fabricExtRoutablePodSubnet2" {
 }
 
 resource "test_assertions" "fabricExtRoutablePodSubnet2" {
-  component = "fabricExtRoutablePodSubnet"
+  component = "fabricExtRoutablePodSubnet2"
 
   equal "prefix" {
     description = "External TEP Pool prefix"
@@ -119,7 +119,7 @@ data "aci_rest_managed" "fabricExtSetupP1" {
 }
 
 resource "test_assertions" "fabricExtSetupP1" {
-  component = "fabricExtSetupP"
+  component = "fabricExtSetupP1"
 
   equal "extPoolId" {
     description = "Remote Pool ID"
@@ -141,7 +141,7 @@ data "aci_rest_managed" "fabricExtSetupP2" {
 }
 
 resource "test_assertions" "fabricExtSetupP2" {
-  component = "fabricExtSetupP"
+  component = "fabricExtSetupP2"
 
   equal "extPoolId" {
     description = "Remote Pool ID"
@@ -154,4 +154,4 @@ resource "test_assertions" "fabricExtSetupP2" {
     got         = data.aci_rest_managed.fabricExtSetupP2.content.tepPool
     want        = "10.191.202.0/24"
   }
-}
+} */

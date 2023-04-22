@@ -13,7 +13,7 @@ Location in GUI:
 ```hcl
 module "aci_pod_setup" {
   source  = "netascode/pod-setup/aci"
-  version = ">= 0.1.0"
+  version = ">= 0.1.1"
 
   pod_id   = 2
   tep_pool = "10.2.0.0/16"
@@ -59,8 +59,8 @@ module "aci_pod_setup" {
 |------|-------------|------|---------|:--------:|
 | <a name="input_pod_id"></a> [pod\_id](#input\_pod\_id) | Pod ID. Minimum value: 1. Maximum value: 255. | `number` | n/a | yes |
 | <a name="input_tep_pool"></a> [tep\_pool](#input\_tep\_pool) | TEP pool. | `string` | n/a | yes |
-| <a name="input_external_tep_pools"></a> [external\_tep\_pools](#input\_external\_tep\_pools) | List of external TEP Pools | <pre>list(object({<br>    prefix                 = string<br>    reserved_address_count = optional(number)<br>  }))</pre> | n/a | yes |
-| <a name="input_remote_pools"></a> [remote\_pools](#input\_remote\_pools) | List of Remote Pools | <pre>list(object({<br>    id          = number<br>    remote_pool = string<br>  }))</pre> | n/a | yes |
+| <a name="input_external_tep_pools"></a> [external\_tep\_pools](#input\_external\_tep\_pools) | List of external TEP Pools | <pre>list(object({<br>    prefix                 = string<br>    reserved_address_count = number<br>  }))</pre> | `[]` | no |
+| <a name="input_remote_pools"></a> [remote\_pools](#input\_remote\_pools) | List of Remote Pools | <pre>list(object({<br>    id          = number<br>    remote_pool = string<br>  }))</pre> | `[]` | no |
 
 ## Outputs
 
